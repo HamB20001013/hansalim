@@ -34,6 +34,9 @@
   integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="js/html5shiv.js" defer></script>
+  <!-- swiper CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <!-- CSS3 적용 -->
   <!-- <script src="js/prefixfree.min.js" defer></script> -->
   <script src="js/script.js" defer></script>
@@ -487,8 +490,8 @@
               </ul>
             </nav>
             <div class="more-menu">
-              <button class="more-menu-bt" id="more-menu-bt">더보기<i class="more-menu-icon"></i></button>
-              <ul class="more-menu-list" id="more-menu-list">
+              <button class="more-menu-bt" id="menu-bt">더보기<i class="more-menu-icon"></i></button>
+              <ul class="more-menu-list" id="menu-list">
                 <li><a href="#">한살림이야기</a></li>
                 <li><a href="#">생산자와 물품</a></li>
                 <li><a href="#">세상의 밥</a></li>
@@ -513,119 +516,22 @@
     </header>
     <!-- visual -->
     <section class="visual">
-      <img src="images/swiper_img_01.jpg" alt="슬라이드 이미지1">
-      <img src="images/swiper_img_02.jpg" alt="슬라이드 이미지2">
-      <img src="images/swiper_img_03.jpg" alt="슬라이드 이미지3">
-      <img src="images/swiper_img_04.jpg" alt="슬라이드 이미지4">
-      <img src="images/swiper_img_05.jpg" alt="슬라이드 이미지5">
-      <img src="images/swiper_img_06.jpg" alt="슬라이드 이미지6">
-      <img src="images/swiper_img_07.jpg" alt="슬라이드 이미지7">
-      <img src="images/swiper_img_08.jpg" alt="슬라이드 이미지8">
-      <img src="images/swiper_img_09.jpg" alt="슬라이드 이미지9">
-      <img src="images/swiper_img_10.jpg" alt="슬라이드 이미지10">
-    </section>
-    <!-- 이 물품은 어떠세요? -->
-    <section class="today">
-      <div class="inner">
-        <h2>이 물품은 어떠세요?</h2>
-        <ul>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <img src="" alt="">
-            </a>
-            <ul class="text">
-              <h5><a href="#"></a></h5>
-              <ul class="price">
-                <li><a href="#">원</a></li>
-                <li><a href="#"><img src="" alt=""></a></li>
-              </ul>
-            </ul>
-          </li>
-        </ul>
+      <div class="visual-slide">
+        <!-- 비주얼 슬라이드 -->
+        <div class="swiper sw-visual">
+          <div class="swiper-wrapper" id="data-visual">
+            <!-- 데이터 출력 -->
+          </div>
+        </div>
+      </div>
+      <!-- 좌우 슬라이드 이동 버튼 -->
+      <button class="visual-prev">이전</button>
+      <button class="visual-next">다음</button>
+      <!-- 슬라이드 컨트롤러 -->
+      <div class="visual-control clearfix">
+        <button class="visual-play"></button>
+        <div class="visual-pg">1/17</div>
+        <button class="visual-more"></button>
       </div>
     </section>
     <!-- 반가운 새물품 -->
