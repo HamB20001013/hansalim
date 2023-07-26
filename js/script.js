@@ -30,9 +30,13 @@ xhttp.onreadystatechange = function (event) {
     //
     VISUAL_ARR = obj.visual;
     TODAY_GOOD = obj.todaygood;
-    // 비주얼 화면에 배치한다
+    SALE_GOOD = obj.salegood;
+    // 비주얼 화면에 배치
     showVisual();
+    // 오늘의 상품 화면에 배치
     showTodayGood();
+    // 할인 상품 화면에 배치
+    showSaleGood();
   }
 };
 // 자료를 호출한다.
@@ -46,6 +50,12 @@ let visualTag = document.getElementById("data-visual");
 let TODAY_GOOD;
 let todayTag = document.getElementById("data-today");
 let todayTag2 = document.getElementById("data-today2");
+// 할인 상품
+let SALE_GOOD;
+let saleTag = document.getElementById("data-sale");
+
+
+// ************************************************
 // 비주얼 화면 출력 가능
 function showVisual() {
   let html = "";
@@ -153,13 +163,63 @@ function showTodayGood() {
         <button class="good-add-cart"></button>
       </div>
     </div>
-   
     `;
     htmlBottom += tag;
   });
   todayTag.innerHTML = htmlTop;
   todayTag2.innerHTML = htmlBottom;
 };
+// 알뜰 상품
+function showSaleGood() {
+  let html = `
+  <div class = "swiper sw-sale">
+    <div class="swiper-wrapper">
+  `;
+  SALE_GOOD.forEach(function(item) {
+    let tag = `
+    <div class = "swiper-slide">
+      <div class="good-box">
+        <!-- 제품이미지 -->
+        <a href="${item.link}" class="good-img">
+          <img src="../images/${item.pic}" alt="${item.name}">
+          <span class="good-type">${item.tag}</span>
+        </a>
+        <!-- 제품정보 -->
+        <a href="${item.link}" class="good-info">
+          <em>${item.name}</em>(<em>${item.unit}</em>)
+        </a>
+        <!-- 제품가격 -->
+        <a href="${item.link}" class="good-info-price">
+          ${priceToString(item.price)}<em>원</em>
+        </a>
+        <!-- 장바구니 이미지 -->
+        <button class="good-add-cart"></button>
+      </div>
+    </div>
+    `;
+    html += tag;
+  });
+  html += `
+    </div>
+  </div>
+  `;
+  saleTag.innerHTML = html;
+  const swSale = new Swiper(".sw-sale", {
+    slidesPerView: 3,
+    spaceBetween: 16,
+    slidesPerGroup: 3,
+    navigation: {
+      prevEl: ".sale .slide-prev",
+      nextEl: ".sale .slide-next",
+    },
+    pagination: {
+      el: ".sale .slide-pg",
+      type: "fraction",
+    },
+  });
+};
+
+// *************************************************
 // 펼침 목록들 보기 기능
 // 더보기 목록기능
 const menuBt = document.getElementById("menu-bt");
