@@ -208,7 +208,7 @@ body {
   display: block;
   position: relative;
   padding: 13px 0px;
-  background-color: gray;
+  /* background-color: gray; */
 }
 .header-main-left {
   position: relative;
@@ -245,7 +245,7 @@ body {
   line-height: 19px;
 }
 .gnb > li > a:hover {
-  color: #76db42;
+  color: #76bd42;
 }
 .ball::after {
   content: "";
@@ -337,7 +337,7 @@ body {
 }
 .cate-list > li > a:hover {
   background: #f9f9f9;
-  color: #76db42;
+  color: #76bd42;
 }
 .cate-list > li > a:hover::after {
   display: block;
@@ -387,7 +387,7 @@ body {
   background: url("../images/icoGnbArr1.png") no-repeat 0 0px;
 }
 .theme-list > li > a:hover {
-  color: #76db42;
+  color: #76bd42;
 }
 .theme-list > li > a:hover::after {
   background-position: 0 -10px;
@@ -411,7 +411,7 @@ body {
   color: #666;
 }
 .deli-list > li > a:hover {
-  color: #76db42;
+  color: #76bd42;
 }
 .deli-list > li > a::after {
   content: "";
@@ -447,7 +447,7 @@ body {
   line-height: 40px;
 }
 .cate-depth2-list > li > a:hover {
-  color: #76db42;
+  color: #76bd42;
   text-decoration: underline;
 }
 /* 참여 더보기 목록 */
@@ -463,7 +463,7 @@ body {
   line-height: 19px;
 }
 .join-bt:hover {
-  color: #76db42;
+  color: #76bd42;
 }
 .join-bt-icon {
   position: relative;
@@ -477,7 +477,7 @@ body {
 }
 /* 클래스 포커스했을 때 처리 */
 .join-bt.active {
-  color: #76db42;
+  color: #76bd42;
 }
 .join-bt.active .join-bt-icon {
   background-position: 0 -8px;
@@ -542,7 +542,7 @@ body {
   vertical-align: 2px;
 }
 .more-menu-bt.active {
-  color: #76db42;
+  color: #76bd42;
 }
 .more-menu-bt.active .more-menu-icon {
   background-position: 0 -6px;
@@ -572,7 +572,7 @@ body {
 }
 .search-txt:focus {
   background-color: #fff;
-  border: 1px solid #76db42;
+  border: 1px solid #76bd42;
   color: #000;
 }
 .search-bt {
@@ -608,7 +608,7 @@ body {
   border-radius: 50%;
   text-align: center;
   color: #fff;
-  background-color: #76db42;
+  background-color: #76bd42;
   line-height: 18px;
   font-size: 11px;
   font-weight: 700;
@@ -689,7 +689,7 @@ body {
 .visual-control {
   position: absolute;
   bottom: 43px;
-  z-index: 999;
+  z-index: 1;
   left: calc(50% - 600px + 80px);
   display: block;
 }
@@ -751,4 +751,68 @@ body {
   width: 290px;
   height: 410px;
   background-color: #fff;
+}
+.good-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+}
+.good-img > img {
+  transition: transform .5s;
+}
+.good-img:hover > img {
+  transform: scale(1.1);
+}
+.good-type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #76bd42;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+.good-info {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 60px;
+  padding: 15px;
+  font-size: 17px;
+  color: #000;
+}
+.good-info em {
+  font-style: normal;
+}
+.good-info-price {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0px 15px;
+  font-size: 22px;
+  color: #000;
+}
+.good-info-price em {
+  font-size: 17px;
+  font-style: normal;
+}
+.good-add-cart {
+  position: absolute;
+  right: 20px;
+  bottom: 32px;
+  width: 30px;
+  height: 30px;
+  background: url("../images/btnCartList.png") no-repeat;
+  background-position: 0 0;
+  border: none;
+  cursor: pointer;
+}
+.no-mb {
+  margin-bottom: 0;
 }
