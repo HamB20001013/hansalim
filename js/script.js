@@ -31,12 +31,15 @@ xhttp.onreadystatechange = function (event) {
     VISUAL_ARR = obj.visual;
     TODAY_GOOD = obj.todaygood;
     SALE_GOOD = obj.salegood;
+    NEW_GOOD = obj.newgood;
     // 비주얼 화면에 배치
     showVisual();
     // 오늘의 상품 화면에 배치
     showTodayGood();
     // 할인 상품 화면에 배치
     showSaleGood();
+    // 신상품 화면에 배치
+    showNewGood();
   }
 };
 // 자료를 호출한다.
@@ -53,7 +56,10 @@ let todayTag2 = document.getElementById("data-today2");
 // 할인 상품
 let SALE_GOOD;
 let saleTag = document.getElementById("data-sale");
-
+// 신상품
+let NEW_GOOD;
+let newTag = document.getElementById("data-new");
+let newListTag = document.getElementById("data-new-list");
 
 // ************************************************
 // 비주얼 화면 출력 가능
@@ -169,7 +175,7 @@ function showTodayGood() {
   todayTag.innerHTML = htmlTop;
   todayTag2.innerHTML = htmlBottom;
 };
-// 알뜰 상품
+// 알뜰 상품 화면 출력 기능
 function showSaleGood() {
   let html = `
   <div class = "swiper sw-sale">
@@ -216,6 +222,43 @@ function showSaleGood() {
       el: ".sale .slide-pg",
       type: "fraction",
     },
+  });
+};
+// 신상품 화면 출력 기능
+function showNewGood() {
+  // 첫번째 화면 출력
+  let obj = NEW_GOOD[0];
+  let newGoodFirst = `
+  <a href="${obj.link}" class="new-img">
+    <img src="../images/${obj.pic}" alt="${obj.title}">
+  </a>
+  <a href="${obj.link}" class="new-title">
+    ${obj.title}
+  </a>
+  <a href="${obj.link}" class="new-txt">
+    ${obj.txt}
+  </a>
+  `;
+  newTag.innerHTML = newGoodFirst;
+  // 나머지 출력 1~4번
+  let html = "";
+  NEW_GOOD.forEach(function(item, index) {
+    let tag = "";
+    // 0번은 출력했으므로
+    if (index !== 0) {
+      tag = `
+      <a href="${item.link}" class="new-img">
+        <img src="../images/${item.pic}" alt="${item.title}">
+      </a>
+      <a href="${item.link}" class="new-title">
+        ${item.title}
+      </a>
+      <a href="${item.link}" class="new-txt">
+        ${item.txt}
+      </a>
+      `;
+      newListTag.innerHTML = tag;
+    }
   });
 };
 
