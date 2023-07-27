@@ -32,6 +32,7 @@ xhttp.onreadystatechange = function (event) {
     TODAY_GOOD = obj.todaygood;
     SALE_GOOD = obj.salegood;
     NEW_GOOD = obj.newgood;
+    RECOMMEND_GOOD = obj.recommendgood;
     // 비주얼 화면에 배치
     showVisual();
     // 오늘의 상품 화면에 배치
@@ -40,6 +41,8 @@ xhttp.onreadystatechange = function (event) {
     showSaleGood();
     // 신상품 화면에 배치
     showNewGood();
+    // 추천상품 화면에 배치
+    showRecommandGood();
   }
 };
 // 자료를 호출한다.
@@ -60,6 +63,9 @@ let saleTag = document.getElementById("data-sale");
 let NEW_GOOD;
 let newTag = document.getElementById("data-new");
 let newListTag = document.getElementById("data-new-list");
+// 추천상품
+let RECOMMEND_GOOD;
+let recommendTag = document.getElementById("data-recommend");
 
 // ************************************************
 // 비주얼 화면 출력 가능
@@ -230,7 +236,7 @@ function showNewGood() {
   let obj = NEW_GOOD[0];
   let newGoodFirst = `
   <a href="${obj.link}" class="new-img">
-    <img src="../images/${obj.pic}" alt="${obj.title}">
+    <img src="../images/${obj.pic}" alt="${obj.title}" />
   </a>
   <a href="${obj.link}" class="new-title">
     ${obj.title}
@@ -240,25 +246,74 @@ function showNewGood() {
   </a>
   `;
   newTag.innerHTML = newGoodFirst;
-  // 나머지 출력 1~4번
+  // 나머지 출력 1-4번
   let html = "";
-  NEW_GOOD.forEach(function(item, index) {
+  NEW_GOOD.forEach(function (item, index) {
     let tag = "";
     // 0번은 출력했으므로
     if (index !== 0) {
       tag = `
-      <a href="${item.link}" class="new-img">
-        <img src="../images/${item.pic}" alt="${item.title}">
-      </a>
-      <a href="${item.link}" class="new-title">
-        ${item.title}
-      </a>
-      <a href="${item.link}" class="new-txt">
-        ${item.txt}
-      </a>
+      <div class="new-box">
+        <a href="${item.link}" class="new-box-img">
+          <img src="../images/${item.pic}" alt="${item.title}" />
+        </a>
+        <a href="${obj.link}" class="new-box-title">
+        ${obj.title}
+        </a>
+      </div>
       `;
-      newListTag.innerHTML = tag;
     }
+    html += tag;
+  });
+  newListTag.innerHTML = html;
+}
+// 추천상품 화면 출력 기능
+function showRecommandGood() {
+  let html = `
+  <div class = "swiper sw-recommend">
+    <div class="swiper-wrapper">
+  `;
+  RECOMMEND_GOOD.forEach(function(item) {
+    let tag = `
+    <div class = "swiper-slide">
+      <div class="good-box">
+        <!-- 제품이미지 -->
+        <a href="${item.link}" class="good-img">
+          <img src="../images/${item.pic}" alt="${item.name}">
+          <span class="good-type">${item.tag}</span>
+        </a>
+        <!-- 제품정보 -->
+        <a href="${item.link}" class="good-info">
+          <em>${item.name}</em>(<em>${item.unit}</em>)
+        </a>
+        <!-- 제품가격 -->
+        <a href="${item.link}" class="good-info-price">
+          ${priceToString(item.price)}<em>원</em>
+        </a>
+        <!-- 장바구니 이미지 -->
+        <button class="good-add-cart"></button>
+      </div>
+    </div>
+    `;
+    html += tag;
+  });
+  html += `
+    </div>
+  </div>
+  `;
+  recommendTag.innerHTML = html;
+  const swRecommend = new Swiper(".sw-recommend", {
+    slidesPerView: 3,
+    spaceBetween: 16,
+    slidesPerGroup: 3,
+    navigation: {
+      prevEl: ".recommend .slide-prev",
+      nextEl: ".recommend .slide-next",
+    },
+    pagination: {
+      el: ".recommend .slide-pg",
+      type: "fraction",
+    },
   });
 };
 

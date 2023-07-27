@@ -916,3 +916,107 @@ body {
 .sale .slide-control {
   margin-top: 100px;
 }
+/* 신상품 */
+.new {
+  position: relative;
+  display: block;
+}
+.new .section-bt {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.new-wrap {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 50px;
+}
+.new-left {
+  position: relative;
+  display: block;
+  width: calc(50% - 8);
+  float: left;
+}
+.new-img {
+  position: relative;
+  display: block;
+  height: 370px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.new-title {
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 700;
+}
+.new-txt {
+  position: relative;
+  display: block;
+  font-size: 17px;
+}
+.new-right {
+  position: relative;
+  display: block;
+  width: calc(50% - 8px);
+  float: right;
+}
+.new-box {
+  position: relative;
+  display: block;
+  width: calc(50% - 8px);
+}
+.new-box-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.new-box-img img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 102%;
+}
+.new-box-title {
+  position: relative;
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  /* 말줄임 ...처리 */
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+/* 홀수는 float: left */
+.new-right .new-box:nth-child(odd) {
+  float: left;
+}
+/* 짝수는 float: right */
+.new-right .new-box:nth-child(even) {
+  float: right;
+}
+/* 추천상품 */
+.recommend {
+  position: relative;
+  display: block;
+  background-color: #f7f7f7;
+}
+.recommend .blue {
+  color: #76bd42;
+}
+.recommend .section-title-txt::after {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  width: 67%;
+  height: 4px;
+  background-color: #76bd42;
+  bottom: 5px;
+  left: 0;
+}
