@@ -1005,16 +1005,19 @@ body {
 .recommend {
   position: relative;
   display: block;
-  background-color: #f7f7f7;
+  background-color: #fff8fa;
 }
 .recommend .blue {
   color: #76bd42;
 }
+.recommend .section-title-txt {
+  font-size: 17px;
+  display: inline-block;
+}
 .recommend .section-title-txt::after {
   position: absolute;
-  display: inline-block;
   content: "";
-  width: 67%;
+  width: 100%;
   height: 4px;
   background-color: #76bd42;
   bottom: 5px;
