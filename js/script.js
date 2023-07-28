@@ -33,6 +33,7 @@ xhttp.onreadystatechange = function (event) {
     SALE_GOOD = obj.salegood;
     NEW_GOOD = obj.newgood;
     RECOMMEND_GOOD = obj.recommendgood;
+    POPULAR_ICON = obj.popularicon;
     // 비주얼 화면에 배치
     showVisual();
     // 오늘의 상품 화면에 배치
@@ -43,6 +44,8 @@ xhttp.onreadystatechange = function (event) {
     showNewGood();
     // 추천상품 화면에 배치
     showRecommandGood();
+    // 인기물품 아이콘 화면에 배치
+    showPapularIconGood();
   }
 };
 // 자료를 호출한다.
@@ -66,6 +69,10 @@ let newListTag = document.getElementById("data-new-list");
 // 추천상품
 let RECOMMEND_GOOD;
 let recommendTag = document.getElementById("data-recommend");
+// 인기물품 아이콘
+let POPULAR_ICON;
+let popularIconTag = document.getElementById("data-popular-icon");
+
 
 // ************************************************
 // 비주얼 화면 출력 가능
@@ -314,6 +321,56 @@ function showRecommandGood() {
       el: ".recommend .slide-pg",
       type: "fraction",
     },
+  });
+};
+// 인기상품 아이콘 화면 출력 기능
+function showPapularIconGood() {
+  let html = `
+  <div class="swiper sw-icon">
+    <div class="swiper-wrapper">
+  `;
+  // 데이터 처리
+  POPULAR_ICON.forEach(function(item) {
+    const tag = `
+      <div class="swiper-slide">
+        <a href="${item.link}">
+          <span class="popular-cate-icon"
+          style="
+          background:url('../images/${item.icon}') no-repeat;
+          background-position:0px 0px;">
+          </span>
+          <sapn class="popular-cate-name">${item.txt}</sapn>
+        </a>
+      </div>
+    `;
+    html += tag;
+  });
+  html += `
+    </div>
+  </div>
+  `;
+  popularIconTag.innerHTML = html;
+  const swIcon = new Swiper(".sw-icon", {
+    slidesPerView: 7,
+    slidesPerGroup: 7,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".popular-slide-next",
+      prevEl: ".popular-slide-prev"
+    },
+  });
+  const tag = document.querySelectorAll(".popular-slide a");
+  tag.forEach(function(item, index) {
+    // hover했을 때 이미지가 변경
+    item.addEventListener("mouseover", function() {
+      const spanTag = this.querySelector(".popular-cate-icon");
+      spanTag.style.backgroundPositionY = "-64px";
+    });
+    // mouseout했을 때 원상복귀
+    item.addEventListener("mouseout", function() {
+      const spanTag = this.querySelector(".popular-cate-icon");
+      spanTag.style.backgroundPositionY = "0px";
+    });
   });
 };
 
