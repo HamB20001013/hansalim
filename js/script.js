@@ -36,6 +36,7 @@ xhttp.onreadystatechange = function (event) {
     POPULAR_ICON = obj.popularicon;
     POPULAR_GOOD = obj.populargood;
     BRAND_ARR = obj.brandarr;
+    BANNER_ARR = obj.bannerarr;
     
     // 비주얼 화면에 배치
     showVisual();
@@ -53,6 +54,8 @@ xhttp.onreadystatechange = function (event) {
     showPapularGood();
     // 브랜드 화면에 배치
     showBrandArr();
+    // 배너 화면에 배치
+    showBannerArr();
   }
 };
 // 자료를 호출한다.
@@ -86,6 +89,10 @@ let popularTag = document.getElementById("data-popular")
 // 브랜드 화면 출력
 let BRAND_ARR;
 let brandTag = document.getElementById("data-brand");
+// 배너
+let BANNER_ARR;
+let bannerTag = document.getElementById("data-banner");
+
 
 // ************************************************
 // 비주얼 화면 출력 가능
@@ -474,6 +481,41 @@ function showBrandArr(){
     }
   });
 };
+// 배너 화면 출력 기능
+function showBannerArr() {
+  let html = `
+  <div class="swiper sw-banner">
+    <div class="swiper-wrapper">
+  `;
+  BANNER_ARR.forEach(function(item) {
+    let tag = `
+    <div class="swiper-slide">
+      <a href="${item.link}">
+        <img src="../images/${item.image}" alt="${item.title}">
+      </a>
+    </div>
+    `;
+    html += tag;
+  });
+  html += `
+    </div>
+  </div>
+  `;
+  bannerTag.innerHTML = html;
+  const swBanner = new Swiper(".sw-banner", {
+    Loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 2,
+    spaceBetween: 0,
+    navigation: {
+      prevEl: ".banner .banner-prev",
+      prevEl: ".banner .banner-next",
+    }
+  })
+}
 
 // *************************************************
 // 펼침 목록들 보기 기능
