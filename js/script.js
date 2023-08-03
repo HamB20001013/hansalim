@@ -37,6 +37,7 @@ xhttp.onreadystatechange = function (event) {
     POPULAR_GOOD = obj.populargood;
     BRAND_ARR = obj.brandarr;
     BANNER_ARR = obj.bannerarr;
+    SEASON_ARR = obj.season;
     
     // 비주얼 화면에 배치
     showVisual();
@@ -56,6 +57,8 @@ xhttp.onreadystatechange = function (event) {
     showBrandArr();
     // 배너 화면에 배치
     showBannerArr();
+    // 제철요리 화면에 배치
+    showSeason();
   }
 };
 // 자료를 호출한다.
@@ -92,6 +95,9 @@ let brandTag = document.getElementById("data-brand");
 // 배너
 let BANNER_ARR;
 let bannerTag = document.getElementById("data-banner");
+// 제철요리
+let SEASON_ARR;
+let seasonTag = document.getElementById("data-season")
 
 
 // ************************************************
@@ -516,6 +522,97 @@ function showBannerArr() {
     }
   })
 }
+// 제철요리 화면 출력 기능
+const buyTotal = document.getElementById("buy-total");
+const buyTotalMoney = document.getElementById("buy-total-money")
+let buyTotalCount = 0;
+let buyTotalMoneyPrice = 0;
+function showSeason() {
+  let html = "";
+  SEASON_ARR.forEach(function (item, index) {
+    const tag = `
+    <li>
+      <div class="season-good clearfix">
+        <input type="checkbox" id="ch${index}" class="season-good-check season-item" checked value=${item.price}>
+        <label for="ch${index}" class="season-label"> ${item.title}</label>
+        <a href="${item.link}" class="season-good-img">
+          <img src = "../images/${item.pic}" alt ="${item.title}"/>
+        </a>
+        <p class = "season-good-info">
+        <a href="${item.link}" class="season-good-title">${item.title}</a>
+          <a href="${item.link}" class="season-good-price"><em>${priceToString(item.price)}</em>원</a>
+        </p>
+      </div>
+    </li>
+    `;
+    html += tag;
+  });
+  seasonTag.innerHTML = html;
+  // smooth scrollbar 적용
+  Scrollbar.initAll();
+  // 체크박스 각각의 기능
+  checkBoxFn();
+  // 계산 출력
+  showBuyGood();
+}
+// 전체 체크박스 기능
+const chkAll = document.getElementById("chall");
+chkAll.addEventListener("change", function() {
+  const chkArr = document.querySelectorAll(".season-item");
+  // 전체 체크를 해야하는 경우
+  if (chkAll.checked) {
+    chkArr.forEach(function(item) {
+      item.checked = true;
+    });
+  } else {
+    // 전체 체크를 해제 해야하는 경우
+    chkArr.forEach(function(item) {
+      item.checked = false;
+    });
+  }
+  // 계산 출력
+  showBuyGood();
+});
+// 체크박스 각각의 기능
+function checkBoxFn() {
+  const chkArr = document.querySelectorAll(".season-item");
+  chkArr.forEach(function(item) {
+    item.addEventListener("change", function() {
+      // 가격을 다시 계산한다.
+      showBuyGood();
+    })
+  })
+}
+// 계산 출력 기능
+function showBuyGood() {
+  // 체크가 된 카운팅 한다 그리고 더한다
+  let count = 0;
+  let priceTotal = 0;
+  const chkArr = document.querySelectorAll(".season-item");
+  chkArr.forEach(function(item) {
+    const state = item.checked;
+    if (state) {
+      count += 1
+      // count++
+      // 글자를 정수 숫자로 변경
+      const price = parseInt(item.value);
+      priceTotal += price;
+    }
+  });
+  buyTotalCount = count;
+  buyTotalMoneyPrice = priceTotal;
+  buyTotal.innerHTML = buyTotalCount;
+  buyTotalMoney.innerHTML = priceToString(buyTotalMoneyPrice);
+  // 전체 선택 버튼 해제
+  if (buyTotalCount === chkArr.length) {
+    // 전체 체크 버튼 checked되어야 함
+    chkAll.checked = true;
+  } else {
+    // 전체 체크 버튼 checked가 해제되어야 함
+    chkAll.checked = false;
+  }
+}
+
 
 // *************************************************
 // 펼침 목록들 보기 기능
