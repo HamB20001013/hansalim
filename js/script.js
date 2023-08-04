@@ -38,6 +38,7 @@ xhttp.onreadystatechange = function (event) {
     BRAND_ARR = obj.brandarr;
     BANNER_ARR = obj.bannerarr;
     SEASON_ARR = obj.season;
+    REVIEW_ARR = obj.review;
     
     // 비주얼 화면에 배치
     showVisual();
@@ -59,6 +60,8 @@ xhttp.onreadystatechange = function (event) {
     showBannerArr();
     // 제철요리 화면에 배치
     showSeason();
+    // 이용후기 화면에 배치
+    showReviewArr();
   }
 };
 // 자료를 호출한다.
@@ -97,7 +100,10 @@ let BANNER_ARR;
 let bannerTag = document.getElementById("data-banner");
 // 제철요리
 let SEASON_ARR;
-let seasonTag = document.getElementById("data-season")
+let seasonTag = document.getElementById("data-season");
+// 이용후기
+let REVIEW_ARR;
+let reviewTag = document.getElementById("data-review");
 
 
 // ************************************************
@@ -534,7 +540,7 @@ function showSeason() {
     <li>
       <div class="season-good clearfix">
         <input type="checkbox" id="ch${index}" class="season-good-check season-item" checked value=${item.price}>
-        <label for="ch${index}" class="season-label"> ${item.title}</label>
+        <label for="ch${index}" class="season-label">${item.title}</label>
         <a href="${item.link}" class="season-good-img">
           <img src = "../images/${item.pic}" alt ="${item.title}"/>
         </a>
@@ -554,7 +560,7 @@ function showSeason() {
   checkBoxFn();
   // 계산 출력
   showBuyGood();
-}
+};
 // 전체 체크박스 기능
 const chkAll = document.getElementById("chall");
 chkAll.addEventListener("change", function() {
@@ -582,7 +588,7 @@ function checkBoxFn() {
       showBuyGood();
     })
   })
-}
+};
 // 계산 출력 기능
 function showBuyGood() {
   // 체크가 된 카운팅 한다 그리고 더한다
@@ -611,7 +617,57 @@ function showBuyGood() {
     // 전체 체크 버튼 checked가 해제되어야 함
     chkAll.checked = false;
   }
-}
+};
+// 이용후기 화면 출력 기능
+function showReviewArr() {
+  let html = `
+  <div class="swiper sw-review">
+    <div class="swiper-wrapper">
+  `;
+  // 데이터 처리
+  REVIEW_ARR.forEach(function(item) {
+    const tag = `
+    <div class="swiper-slide">
+      <div class="review-box">
+        <a href="${item.link}">
+          <div class= "review-box-desc">
+            <span class= "review-box-title">
+              ${item.title}
+            </span>
+            <span class="review-box-star"> ${item.star} </span>
+            <span class="review-box-img">
+            <img src="../images/${item.pic}" alt="${item.title}" />
+            </span>
+          </div>
+          <p class="review-box-txt">
+            ${item.txt}
+          </p>
+        <span class="review-box-user"> ${item.user}${item.shop} </span>
+        </a>
+      </div>
+    </div>
+    `;
+    html += tag;
+  });
+  html += `
+    </div>
+  </div>
+  `;
+  reviewTag.innerHTML = html;
+  const swReivew = new Swiper(".sw-review" , {
+    slidesPerView : 3,
+    spaceBetween: 16,
+    slidesPerGroup: 3,
+    navigation:{
+      prevEl: ".review .slide-prev",
+      nextEl:".review .slide-next",
+    }, 
+    pagination:{
+      el:".review .slide-pg",
+      type:"fraction",
+    }
+  });
+};
 
 
 // *************************************************
