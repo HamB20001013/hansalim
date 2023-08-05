@@ -715,35 +715,35 @@ function showGoodnews() {
   });
   goodnewsTag.innerHTML = html;
 };
-// 커뮤니티 탭메뉴
-// 탭버튼
-const tabBtArr = document.querySelectorAll(".community-bt");
-// 탭 내용
-const tabConArr = document.querySelectorAll(".community-notice dd");
-// 탭 포커스
-let tabFocusIndex = 0;
-// 탭 버튼 클릭 처리
-tabBtArr.forEach(function(item, index) {
-  item.addEventListener("click", function() {
-    tabFocusIndex = index;
-    tabFocusFn();
+// 커뮤니티 탭 메뉴
+  // 탭 버튼
+  const tabBtArr = document.querySelectorAll(".community-bt");
+  // 탭 내용
+  const tabConArr = document.querySelectorAll(".community-notice dd");
+  // 탭 포커스
+  let tabFocusIndex = 0;
+  // 탭 버튼 클릭 처리
+  tabBtArr.forEach(function (item, index) {
+    item.addEventListener("click", function () {
+      tabFocusIndex = index;
+      tabFocusFn();
+    });
   });
-});
-// 탭 포커스 함수 생성
-function tabFocusFn() {
-// 포커스 css를 적용 및 제거
-// 일단 모두 제거
-  tabBtArr.forEach(function() {
-    item.classList.remove("community-bt-active")
-  });
-  // 인덱스에 해당하는 것만 적용
-  tabBtArr[tabFocusIndex].classList.add("community-bt-active")
-  // 내용에서 일단 모두 제거
-  tabConArr.forEach(function(item) {
-    item.classList.remove("community-visible-active")
-  })
-  tabConArr[tabFocusIndex].classList.add("community-visible-active")
-}
+  // 탭 포커스 함수를 생성
+  function tabFocusFn() {
+    // 포커스 css 를 적용 및 제거
+    // 일단 모두 제거
+    tabBtArr.forEach(function (item) {
+      item.classList.remove("community-bt-active");
+    });
+    // 인덱스에 해당하는 것만 적용.
+    tabBtArr[tabFocusIndex].classList.add("community-bt-active");
+    // 내용에서 일단 모두 제거
+    tabConArr.forEach(function (item) {
+      item.classList.remove("community-visible-active");
+    });
+    tabConArr[tabFocusIndex].classList.add("community-visible-active");
+  }
 
 // *************************************************
 // 펼침 목록들 보기 기능
