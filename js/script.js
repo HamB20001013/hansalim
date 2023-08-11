@@ -16,6 +16,12 @@ window.addEventListener("scroll", function() {
 function priceToString(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+// 팝업창(info)
+const infoClose = document.querySelector(".infoClose");
+infoClose.addEventListener("click", function() {
+  const info = document.querySelector(".info");
+  info.style.display = "none";
+});
 // 하단 패밀리 펼침 기능
 // 목록 열기 기능
 const openBt = document.querySelector(".footer-link");
